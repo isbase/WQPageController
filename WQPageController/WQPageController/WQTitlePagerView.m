@@ -116,25 +116,10 @@
     CGFloat offset_x = self.observedScrollView.contentOffset.x;
     if (offset_x == 320.0f) return;
     
-    CGFloat ratio = CGRectGetWidth(self.observedScrollView.frame) / offset_x;
-    NSLog(@" ___  :  %f",self.scrollView.frame.size.width * ratio + self.scrollView.contentOffset.x);
-    self.scrollView.contentOffset = CGPointMake(self.scrollView.frame.size.width / ratio + self.scrollView.contentOffset.x, 0);
+  //  NSLog(@"%f",offset_x);
     
-    CGFloat scrollViewWidth = CGRectGetWidth(self.scrollView.frame);
-    [self.views enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
-        CGFloat diff = (self.scrollView.contentOffset.x - scrollViewWidth*idx) + scrollViewWidth/2;
-        if (diff > scrollViewWidth/2) {
-            diff = scrollViewWidth - diff;
-        }
-        if (diff < 0)diff = 0;
-        CGFloat alpha = scrollViewWidth / 100 * diff / 100 + 0.15f;
-        view.alpha = alpha;
-        
-        if (self.observedScrollView.contentOffset.x == 320) {
-            view.alpha = 1;
-        }
-    }];
- 
+     CGFloat off_x =  (offset_x - 320.0) * 150 / 300;
+    self.scrollView.contentOffset = CGPointMake(off_x, 0);
 /*
     CGFloat ratio = CGRectGetWidth(self.observedScrollView.frame) / CGRectGetWidth(self.scrollView.frame);
     if (ratio > 0) self.scrollView.contentOffset = CGPointMake(self.observedScrollView.contentOffset.x / ratio, 0);

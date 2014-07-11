@@ -19,6 +19,10 @@
 		D7B7419F196FC48500EC3ECF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7B74187196FC48500EC3ECF /* UIKit.framework */; };
 		D7B741A7196FC48500EC3ECF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7B741A5196FC48500EC3ECF /* InfoPlist.strings */; };
 		D7B741A9196FC48500EC3ECF /* WQPageControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B741A8196FC48500EC3ECF /* WQPageControllerTests.m */; };
+		D7B741B4196FC4CE00EC3ECF /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B741B3196FC4CE00EC3ECF /* RootViewController.m */; };
+		D7B741B7196FC65600EC3ECF /* WQPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B741B6196FC65600EC3ECF /* WQPageController.m */; };
+		D7B741BA196FC88300EC3ECF /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B741B9196FC88300EC3ECF /* TestViewController.m */; };
+		D7B741BD196FD95900EC3ECF /* WQTitlePagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B741BC196FD95900EC3ECF /* WQTitlePagerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,14 @@
 		D7B741A4196FC48500EC3ECF /* WQPageControllerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WQPageControllerTests-Info.plist"; sourceTree = "<group>"; };
 		D7B741A6196FC48500EC3ECF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D7B741A8196FC48500EC3ECF /* WQPageControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WQPageControllerTests.m; sourceTree = "<group>"; };
+		D7B741B2196FC4CE00EC3ECF /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		D7B741B3196FC4CE00EC3ECF /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		D7B741B5196FC65600EC3ECF /* WQPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQPageController.h; sourceTree = "<group>"; };
+		D7B741B6196FC65600EC3ECF /* WQPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQPageController.m; sourceTree = "<group>"; };
+		D7B741B8196FC88300EC3ECF /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		D7B741B9196FC88300EC3ECF /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		D7B741BB196FD95900EC3ECF /* WQTitlePagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQTitlePagerView.h; sourceTree = "<group>"; };
+		D7B741BC196FD95900EC3ECF /* WQTitlePagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQTitlePagerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +121,9 @@
 			children = (
 				D7B74192196FC48500EC3ECF /* AppDelegate.h */,
 				D7B74193196FC48500EC3ECF /* AppDelegate.m */,
+				D7B741B2196FC4CE00EC3ECF /* RootViewController.h */,
+				D7B741B3196FC4CE00EC3ECF /* RootViewController.m */,
+				D7B741BE196FD96C00EC3ECF /* WQPAGECONTROLLER */,
 				D7B74195196FC48500EC3ECF /* Images.xcassets */,
 				D7B7418A196FC48500EC3ECF /* Supporting Files */,
 			);
@@ -142,6 +157,19 @@
 				D7B741A5196FC48500EC3ECF /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D7B741BE196FD96C00EC3ECF /* WQPAGECONTROLLER */ = {
+			isa = PBXGroup;
+			children = (
+				D7B741B8196FC88300EC3ECF /* TestViewController.h */,
+				D7B741B9196FC88300EC3ECF /* TestViewController.m */,
+				D7B741B5196FC65600EC3ECF /* WQPageController.h */,
+				D7B741B6196FC65600EC3ECF /* WQPageController.m */,
+				D7B741BB196FD95900EC3ECF /* WQTitlePagerView.h */,
+				D7B741BC196FD95900EC3ECF /* WQTitlePagerView.m */,
+			);
+			name = WQPAGECONTROLLER;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,7 +268,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7B74194196FC48500EC3ECF /* AppDelegate.m in Sources */,
+				D7B741BD196FD95900EC3ECF /* WQTitlePagerView.m in Sources */,
 				D7B74190196FC48500EC3ECF /* main.m in Sources */,
+				D7B741B7196FC65600EC3ECF /* WQPageController.m in Sources */,
+				D7B741B4196FC4CE00EC3ECF /* RootViewController.m in Sources */,
+				D7B741BA196FC88300EC3ECF /* TestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

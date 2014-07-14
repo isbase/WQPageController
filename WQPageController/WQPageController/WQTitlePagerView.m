@@ -12,10 +12,10 @@
 
 @interface WQTitlePagerView ()
 
-@property (strong, nonatomic)   UIScrollView    *scrollView;         //title scrollview
-@property (strong, nonatomic)   UIPageControl   *pageControl;       //title pageControl
-@property (weak, nonatomic)     UIScrollView    *observedScrollView;   //observed Father ScrolleView
-@property (strong, nonatomic)   NSMutableArray  *views;            //Title Subviews .like lable or image
+@property (strong, nonatomic)   UIScrollView    *scrollView;            //title scrollview
+@property (strong, nonatomic)   UIPageControl   *pageControl;           //title pageControl
+@property (weak, nonatomic)     UIScrollView    *observedScrollView;    //observed Father ScrolleView
+@property (strong, nonatomic)   NSMutableArray  *views;                 //Title Subviews .like lable or image
 @end
 
 
@@ -49,9 +49,9 @@
     self.pageControl = [UIPageControl new];
     self.font = [UIFont systemFontOfSize:17];
     _isObservingScrollView = NO;
-    
     [self addSubview:self.scrollView];
     [self addSubview:self.pageControl];
+    self.pageNumber = 0;
 }
 
 #pragma mark - 添加标题数据
@@ -70,7 +70,6 @@
             titleLable.font = self.font;
             [self.scrollView addSubview:titleLable];
             [self.views addObject:titleLable];
-            
         }else if ([obj isKindOfClass:[UIImage class]]){
             //here is image
             UIImageView *imageView = [[UIImageView alloc] initWithImage:obj];
@@ -113,13 +112,13 @@
 #pragma mark - 监听回调方法
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    if (![keyPath isEqualToString:WQTITLEVIEW_KEYPATH])return;
     CGFloat offset_x = self.observedScrollView.contentOffset.x;
-    if (offset_x == 320.0f) return;
-    
-  //  NSLog(@"%f",offset_x);
-    
-     CGFloat off_x =  (offset_x - 320.0) * 150 / 300;
-    self.scrollView.contentOffset = CGPointMake(off_x, 0);
+    CGFloat off_x =  (offset_x - 320.0) * 150 / 300;
+    if (offset_x != 320.0 && offset_x != 640.0) {
+        self.scrollView.contentOffset = CGPointMake(self.pageNumber *150 + off_x, 0);
+    }
+    self.pageControl.currentPage = self.pageNumber;
 /*
     CGFloat ratio = CGRectGetWidth(self.observedScrollView.frame) / CGRectGetWidth(self.scrollView.frame);
     if (ratio > 0) self.scrollView.contentOffset = CGPointMake(self.observedScrollView.contentOffset.x / ratio, 0);

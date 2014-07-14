@@ -27,10 +27,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"%@",self);
+   // NSLog(@"%@",self);
     int r = rand() % 255;
     int b = rand() % 255;
-    self.view.backgroundColor = RGBCOLOR(r,255, b);
+    self.view.backgroundColor = RGBCOLOR(r,180, b);
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 200, 320, 30)];
     label.textAlignment = NSTextAlignmentCenter;
     label.text = self.labelTitle;

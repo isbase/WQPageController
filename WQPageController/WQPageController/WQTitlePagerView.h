@@ -25,6 +25,8 @@
 @property (strong, nonatomic) UIFont *font;
 
 
+@property (nonatomic) NSInteger pageNumber;
+
 /**
  *  添加标题数据
  *  objects type : NSString or UIImage

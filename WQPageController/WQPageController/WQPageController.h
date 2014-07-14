@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WQSegmentPageView.h"
 
-@interface WQPageController : UIViewController<UIPageViewControllerDataSource,UIPageViewControllerDelegate>
+@interface WQPageController : UIViewController<UIPageViewControllerDataSource,UIPageViewControllerDelegate,WQsegmentIndexDelegate>
 
 
 -(instancetype)initWithChildViewControllers:(NSArray *)viewControllers andTitles:(NSArray *)titleArray;

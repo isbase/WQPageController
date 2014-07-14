@@ -23,6 +23,7 @@
 		D7B741B7196FC65600EC3ECF /* WQPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B741B6196FC65600EC3ECF /* WQPageController.m */; };
 		D7B741BA196FC88300EC3ECF /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B741B9196FC88300EC3ECF /* TestViewController.m */; };
 		D7B741BD196FD95900EC3ECF /* WQTitlePagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B741BC196FD95900EC3ECF /* WQTitlePagerView.m */; };
+		D7F1464C1973D4840095E581 /* WQSegmentPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F1464B1973D4840095E581 /* WQSegmentPageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		D7B741B9196FC88300EC3ECF /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		D7B741BB196FD95900EC3ECF /* WQTitlePagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQTitlePagerView.h; sourceTree = "<group>"; };
 		D7B741BC196FD95900EC3ECF /* WQTitlePagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQTitlePagerView.m; sourceTree = "<group>"; };
+		D7F1464A1973D4840095E581 /* WQSegmentPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQSegmentPageView.h; sourceTree = "<group>"; };
+		D7F1464B1973D4840095E581 /* WQSegmentPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQSegmentPageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +171,8 @@
 				D7B741B6196FC65600EC3ECF /* WQPageController.m */,
 				D7B741BB196FD95900EC3ECF /* WQTitlePagerView.h */,
 				D7B741BC196FD95900EC3ECF /* WQTitlePagerView.m */,
+				D7F1464A1973D4840095E581 /* WQSegmentPageView.h */,
+				D7F1464B1973D4840095E581 /* WQSegmentPageView.m */,
 			);
 			name = WQPAGECONTROLLER;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 				D7B74194196FC48500EC3ECF /* AppDelegate.m in Sources */,
 				D7B741BD196FD95900EC3ECF /* WQTitlePagerView.m in Sources */,
 				D7B74190196FC48500EC3ECF /* main.m in Sources */,
+				D7F1464C1973D4840095E581 /* WQSegmentPageView.m in Sources */,
 				D7B741B7196FC65600EC3ECF /* WQPageController.m in Sources */,
 				D7B741B4196FC4CE00EC3ECF /* RootViewController.m in Sources */,
 				D7B741BA196FC88300EC3ECF /* TestViewController.m in Sources */,
@@ -469,6 +475,7 @@
 				D7B741AE196FC48500EC3ECF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D7B741AF196FC48500EC3ECF /* Build configuration list for PBXNativeTarget "WQPageControllerTests" */ = {
 			isa = XCConfigurationList;
@@ -477,6 +484,7 @@
 				D7B741B1196FC48500EC3ECF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

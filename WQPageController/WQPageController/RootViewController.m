@@ -65,14 +65,14 @@
         sum += 1;
     }
     
-    WQPageController *page = [[WQPageController alloc] initWithChildViewControllers:controllerArray andTitles:titleArray];
+    WQPageController *page = [[WQPageController alloc] initWithChildViewControllers:controllerArray andTitles:titleArray wihtType:WQPAGETITLEBARTYPE];
     [self.navigationController pushViewController:page animated:YES];
 }
 
 
 -(void)onSegmentClick
 {
-    NSArray *titleArray = [NSArray arrayWithObjects:@"轻松一刻",@"头条",@"北京",@"房产",@"移动互联", nil];
+    NSArray *titleArray = [NSArray arrayWithObjects:@"轻松一刻",@"头条",@"北京",@"房产",@"移动互联",@"今日头条",@"明日预售",@"后天发布",@"天涯芳草", nil];
     
     NSMutableArray *controllerArray = [[NSMutableArray alloc]init];
     int sum = 0;
@@ -85,7 +85,7 @@
         sum += 1;
     }
     
-    WQPageController *page = [[WQPageController alloc] initWithChildViewControllers:controllerArray andTitles:titleArray];
+    WQPageController *page = [[WQPageController alloc] initWithChildViewControllers:controllerArray andTitles:titleArray wihtType:WQPAGEMENUTYPE];
     [self.navigationController pushViewController:page animated:YES];
 }
 

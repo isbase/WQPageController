@@ -39,4 +39,7 @@
 -(void)addobserverScrollView:(UIScrollView *)scrollView;
 
 
+-(void)removeCustonerObserver;
+
+
 @end

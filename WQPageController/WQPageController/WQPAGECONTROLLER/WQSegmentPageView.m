@@ -7,11 +7,9 @@
 //
 
 #import "WQSegmentPageView.h"
-#define kButtonTagStart 100
-#define kPATH_OFFSET_X @"contentOffset.x"
+#import "WQCommons.h"
 
 @interface WQSegmentPageView (){
-    NSInteger selectedIndex;
     UIView  *lineView;
     BOOL    _isObservingScrollView;
     NSInteger pageSum;
@@ -29,9 +27,9 @@
         // Initialization code
         self.backgroundColor = [UIColor lightGrayColor];
         _isObservingScrollView = NO;
-        selectedIndex = 0;
+        self.pageNumber = 0;
         
-        CGRect rc  = [self viewWithTag:selectedIndex+kButtonTagStart].frame;
+        CGRect rc  = [self viewWithTag:self.pageNumber + kButtonTagStart].frame;
         lineView = [[UIView alloc]initWithFrame:CGRectMake(rc.origin.x, 5, rc.size.width, self.frame.size.height - 10)];
         lineView.backgroundColor = [UIColor colorWithRed:190.0/255.1 green:2.0/255.0 blue:1.0/255.0 alpha:1];
         lineView.layer.cornerRadius = 5;
@@ -71,37 +69,57 @@
 -(void)selectIndex:(NSInteger)index
 {
     //first of all ,we need to eliminate negative conditions
-    if (selectedIndex == index) return;
-    selectedIndex = index;
+    if (self.pageNumber == index) return;
+    self.pageNumber = index;
     if ([self.segmentDelegate respondsToSelector:@selector(wqSegmentSelectIndex:)]) {
         [self.segmentDelegate wqSegmentSelectIndex:index];
     }
     [UIView beginAnimations:@"CustomerAnimation" context:nil];
     [UIView setAnimationDuration:0.2];
-    CGRect lineRC  = [self viewWithTag:selectedIndex+kButtonTagStart].frame;
+    CGRect lineRC  = [self viewWithTag:self.pageNumber + kButtonTagStart].frame;
     lineView.frame = CGRectMake(lineRC.origin.x, lineView.frame.origin.y, lineRC.size.width, lineView.frame.size.height);
     [UIView commitAnimations];
 }
 
--(void)setLineOffsetWithPage:(float)page andRatio:(float)ratio
+#pragma mark - 添加监视
+-(void)addobserverScrollView:(UIScrollView *)scrollView
 {
-    CGRect lineRC  = [self viewWithTag:page+kButtonTagStart].frame;
-    CGRect lineRC2  = [self viewWithTag:page+1+kButtonTagStart].frame;
+    self.observedScrollView = scrollView;
+    [self removeCustonerObserver];
+    _isObservingScrollView = YES;
+    [self.observedScrollView addObserver:self forKeyPath:WQTITLEVIEW_KEYPATH options:NSKeyValueObservingOptionNew context:nil];
+}
+
+#pragma mark - 监听回调方法
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (![keyPath isEqualToString:WQTITLEVIEW_KEYPATH])return;
+    if (self.pageNumber == pageSum - 1 && self.observedScrollView.contentOffset.x > 320) return;
+    if (self.pageNumber == 0 && self.observedScrollView.contentOffset.x < 320) return;
+    
+    float radio = (float)((int)self.observedScrollView.contentOffset.x - 320)/SCREEN_WIDTH;
+    int a = 1;
+    if (self.observedScrollView.contentOffset.x < 320){
+        a = -1;
+        radio = -radio;
+    }
+    
+    CGRect lineRC  = [self viewWithTag:self.pageNumber + kButtonTagStart].frame;
+    CGRect lineRC2  = [self viewWithTag:self.pageNumber + a +kButtonTagStart].frame;
     float width = lineRC2.size.width;
     if (lineRC2.size.width < lineRC.size.width)
     {
-        width =  lineRC.size.width - (lineRC.size.width-lineRC2.size.width)*ratio;
+        width =  lineRC.size.width - (lineRC.size.width-lineRC2.size.width)*radio;
     }
     else if(lineRC2.size.width > lineRC.size.width)
     {
-        width =  lineRC.size.width + (lineRC2.size.width-lineRC.size.width)*ratio;
+        width =  lineRC.size.width + (lineRC2.size.width-lineRC.size.width)*radio;
     }
-    float x = lineRC.origin.x + (lineRC2.origin.x - lineRC.origin.x)*ratio;
+    float x = lineRC.origin.x + (lineRC2.origin.x - lineRC.origin.x)*radio;
     lineView.frame = CGRectMake(x, lineView.frame.origin.y,width,lineView.frame.size.height);
-    selectedIndex = page;
+
     
-    
-    if ((lineRC.origin.x - self.contentOffset.x) > 160) {
+    if ((lineRC.origin.x - self.contentOffset.x ) > 160) {
         lineRC = [self ADDOrigin_x:80 withRect:lineRC];
     }else if (lineRC.origin.x > (self.contentSize.width - 320)){
         lineRC = [self setOrigin_x:self.contentSize.width - 320 withRect:lineRC];
@@ -114,46 +132,8 @@
     }
     
     [self scrollRectToVisible:lineRC animated:YES];
-    
-/**
- * test Code
-     if ((x - self.contentOffset.x) > 320 * 0.65){
-     
-     if ((lineRC.origin.x - self.contentOffset.x) > 160) {
-     lineRC = [self ADDOrigin_x:80 withRect:lineRC];
-     }
-     }else if ((x-self.contentOffset.x) < 320 * 0.35){
-     if ((lineRC.origin.x - self.contentOffset.x) < 50) {
-     lineRC = [self ADDOrigin_x:-80 withRect:lineRC];
-     }
-     if (lineRC.origin.x < 50) {
-     lineRC  = [self setOrigin_x:0 withRect:lineRC];
-     }
-     }
-     
-*/
-    
-    
-    
-/**
-* 快速滑动有问题
-     CGFloat off_x = self.contentOffset.x;
- 
-     if ((x - self.contentOffset.x) > 320 * 0.65) {
-     off_x += 80;
-     if ((off_x + 320) > self.contentSize.width){
-     off_x = self.contentSize.width - 320;
-     }
-     [self setContentOffset:CGPointMake(off_x, 0) animated:YES];
-     return;
-     }else if((x-self.contentOffset.x) < 320 * 0.35){
-     off_x -= 80;
-     if (off_x <= 0)off_x = 0;
-     [self setContentOffset:CGPointMake(off_x, 0) animated:YES];
-     return;
-     }
-*/
 }
+
 
 -(CGRect)ADDOrigin_x:(CGFloat)x withRect:(CGRect)originalRC
 {
@@ -167,6 +147,12 @@
     CGRect frame = originalRC;
     frame.origin.x = x;
     return frame;
+}
+
+-(void)removeCustonerObserver{
+    if (_isObservingScrollView) {
+        [self.observedScrollView removeObserver:self forKeyPath:WQTITLEVIEW_KEYPATH];
+    }
 }
 
 

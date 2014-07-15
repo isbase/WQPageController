@@ -17,7 +17,7 @@
 @interface WQSegmentPageView : UIScrollView
 
 @property (nonatomic) id<WQsegmentIndexDelegate> segmentDelegate;
-
+@property (assign, nonatomic) NSInteger pageNumber;
 /**
  * 初始化内容
  */
@@ -30,8 +30,11 @@
 
 
 /**
- * 滑块滑动
+ *  添加监视 添加监视
  */
--(void)setLineOffsetWithPage:(float)page andRatio:(float)ratio;
+-(void)addobserverScrollView:(UIScrollView *)scrollView;
+
+
+-(void)removeCustonerObserver;
 
 @end

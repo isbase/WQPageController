@@ -103,9 +103,7 @@
 -(void)addobserverScrollView:(UIScrollView *)scrollView
 {
     self.observedScrollView = scrollView;
-    if (_isObservingScrollView) {
-        [self.observedScrollView removeObserver:self forKeyPath:WQTITLEVIEW_KEYPATH];
-    }
+    [self removeCustonerObserver];
     _isObservingScrollView = YES;
     [self.observedScrollView addObserver:self forKeyPath:WQTITLEVIEW_KEYPATH options:NSKeyValueObservingOptionNew context:nil];
 }
@@ -125,5 +123,12 @@
     _pageColor = pageColor;
     self.pageControl.pageIndicatorTintColor = pageColor;
 }
+
+-(void)removeCustonerObserver{
+    if (_isObservingScrollView) {
+        [self.observedScrollView removeObserver:self forKeyPath:WQTITLEVIEW_KEYPATH];
+    }
+}
+
 
 @end

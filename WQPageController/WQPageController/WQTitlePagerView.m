@@ -115,7 +115,7 @@
 {
     if (![keyPath isEqualToString:WQTITLEVIEW_KEYPATH])return;
     CGFloat offset_x = self.observedScrollView.contentOffset.x;
-    CGFloat off_x =  (offset_x - 320.0) * 150 / 320;
+    CGFloat off_x =  (offset_x - SCREEN_WIDTH) * 150 / SCREEN_WIDTH;
     self.scrollView.contentOffset = CGPointMake(self.pageNumber * CGRectGetWidth(self.scrollView.frame) + off_x, 0);
     self.pageControl.currentPage = self.pageNumber;
 }

@@ -59,7 +59,7 @@
     for (NSString* title in titleArray)
     {
         TestViewController *vc = [[TestViewController alloc]init];
-        vc.labelTitle = [title stringByAppendingString:@" View Controller"];
+        vc.labelTitle = [title stringByAppendingString:@"   Today's View Controller"];
         vc.page = sum;
         [controllerArray addObject:vc];
         sum += 1;
@@ -79,7 +79,7 @@
     for (NSString* title in titleArray)
     {
         TestViewController *vc = [[TestViewController alloc]init];
-        vc.labelTitle = [title stringByAppendingString:@" View Controller"];
+        vc.labelTitle = [title stringByAppendingString:@"   Today's View Controller"];
         vc.page = sum;
         [controllerArray addObject:vc];
         sum += 1;

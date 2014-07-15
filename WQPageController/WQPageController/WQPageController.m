@@ -34,6 +34,9 @@
     return self;
 }
 
+
+#define PAGETYPE 1
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -41,34 +44,6 @@
     _currentPage = 1;
     
     self.view.backgroundColor = [UIColor yellowColor];
-    
-
-
- 
-
-#pragma mark - case 1
-
-//    titleView = [[WQTitlePagerView alloc] initWithFrame:CGRectMake(0, 20, 150, 50)];
-//    titleView.backgroundColor = [UIColor blackColor];
-//    titleView.index = 0;
-//    [titleView addObjects:_titleArray];
-//    [self.view addSubview:titleView];
-//    titleView.center = CGPointMake(160, titleView.center.y);
-//    
-//    for (UIView *view in self.pageViewController.view.subviews) {
-//        if ([view isKindOfClass:[UIScrollView class]]) {
-//            [titleView addobserverScrollView:(UIScrollView *)view];
-//            break;
-//        }
-//    }
- 
-
-    
-#pragma mark - case 2
-
-    segmentView = [[WQSegmentPageView alloc] initWithFrame:CGRectMake(0, 40, 320, 35) withItems:_titleArray];
-    segmentView.segmentDelegate = self;
-    [self.view addSubview:segmentView];
     
     
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
@@ -86,27 +61,36 @@
     [self.pageViewController didMoveToParentViewController:self];
     
     
-}
+    
 
-#pragma mark - 
+#if PAGETYPE == 1
+    
+    titleView = [[WQTitlePagerView alloc] initWithFrame:CGRectMake(0, 20, 150, 50)];
+    titleView.backgroundColor = [UIColor blackColor];
+    titleView.index = 0;
+    [titleView addObjects:_titleArray];
+    [self.view addSubview:titleView];
+    titleView.center = CGPointMake(160, titleView.center.y);
+    
+    for (UIView *view in self.pageViewController.view.subviews) {
+        if ([view isKindOfClass:[UIScrollView class]]) {
+            [titleView addobserverScrollView:(UIScrollView *)view];
+            break;
+        }
+    }
+    
+#elif PAGETYPE ==2
+    
+    segmentView = [[WQSegmentPageView alloc] initWithFrame:CGRectMake(0, 40, 320, 35) withItems:_titleArray];
+    segmentView.segmentDelegate = self;
+    [self.view addSubview:segmentView];
 
-#pragma mark -  以下方法只在SegmentPageView中使用
--(void)wqSegmentSelectIndex:(NSInteger)index{
-    UIViewController *startingViewController = [self viewControllerAtIndex:index];
-    NSArray *viewControllers = @[startingViewController];
-    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+
+#endif
+
+
     
 }
-
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (scrollView.contentOffset.x < 0 || scrollView.contentOffset.x > scrollView.contentSize.width - 320) return;
-    int page = (int)scrollView.contentOffset.x / 320 ;
-    float radio = (float)((int)scrollView.contentOffset.x % 320)/320;
-    [segmentView setLineOffsetWithPage:page andRatio:radio];
-}
-
-
 
 
 #pragma mark - UIViewController delegate
@@ -147,21 +131,24 @@
     titleView.pageNumber = _currentPage;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+
+#pragma mark -  以下方法只在SegmentPageView中使用
+-(void)wqSegmentSelectIndex:(NSInteger)index{
+    UIViewController *startingViewController = [self viewControllerAtIndex:index];
+    NSArray *viewControllers = @[startingViewController];
+    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentOffset.x < 0 || scrollView.contentOffset.x > scrollView.contentSize.width - 320) return;
+    int page = (int)scrollView.contentOffset.x / 320 ;
+    float radio = (float)((int)scrollView.contentOffset.x % 320)/320;
+    [segmentView setLineOffsetWithPage:page andRatio:radio];
 }
-*/
+
+
 
 @end

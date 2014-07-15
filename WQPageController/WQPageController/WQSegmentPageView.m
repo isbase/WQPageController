@@ -55,7 +55,6 @@
         }];
         
         pageSum = itmes.count;
-        NSLog(@"__ : %f",frame.size.height);
         self.contentSize = CGSizeMake(offset_x, frame.size.height);
         self.showsHorizontalScrollIndicator = NO;
         

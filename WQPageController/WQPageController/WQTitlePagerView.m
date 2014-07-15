@@ -116,7 +116,7 @@
     CGFloat offset_x = self.observedScrollView.contentOffset.x;
     CGFloat off_x =  (offset_x - 320.0) * 150 / 300;
     if (offset_x != 320.0 && offset_x != 640.0) {
-        self.scrollView.contentOffset = CGPointMake(self.pageNumber *150 + off_x, 0);
+        self.scrollView.contentOffset = CGPointMake(self.pageNumber * CGRectGetWidth(self.scrollView.frame) + off_x, 0);
     }
     self.pageControl.currentPage = self.pageNumber;
 /*

@@ -63,6 +63,7 @@
 		D7B741BC196FD95900EC3ECF /* WQTitlePagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQTitlePagerView.m; sourceTree = "<group>"; };
 		D7F1464A1973D4840095E581 /* WQSegmentPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQSegmentPageView.h; sourceTree = "<group>"; };
 		D7F1464B1973D4840095E581 /* WQSegmentPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQSegmentPageView.m; sourceTree = "<group>"; };
+		D7F1464D1974F5380095E581 /* WQCommons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WQCommons.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +174,7 @@
 				D7B741BC196FD95900EC3ECF /* WQTitlePagerView.m */,
 				D7F1464A1973D4840095E581 /* WQSegmentPageView.h */,
 				D7F1464B1973D4840095E581 /* WQSegmentPageView.m */,
+				D7F1464D1974F5380095E581 /* WQCommons.h */,
 			);
 			name = WQPAGECONTROLLER;
 			sourceTree = "<group>";

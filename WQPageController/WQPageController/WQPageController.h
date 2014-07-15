@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WQSegmentPageView.h"
+#import "WQCommons.h"
 
 @interface WQPageController : UIViewController<UIPageViewControllerDataSource,UIPageViewControllerDelegate,WQsegmentIndexDelegate>
 

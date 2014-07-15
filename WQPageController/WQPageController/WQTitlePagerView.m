@@ -7,8 +7,7 @@
 //
 
 #import "WQTitlePagerView.h"
-
-#define  WQTITLEVIEW_KEYPATH @"contentOffset"
+#import "WQCommons.h"
 
 @interface WQTitlePagerView ()
 
@@ -45,6 +44,7 @@
 {
     self.scrollView = [UIScrollView new];
     self.scrollView.scrollEnabled = NO;
+    self.scrollView.pagingEnabled = YES;
     self.views = [NSMutableArray array];
     self.pageControl = [UIPageControl new];
     self.font = [UIFont systemFontOfSize:17];
@@ -92,6 +92,7 @@
         [view sizeToFit];
         CGSize size = view.frame.size;
         size.width = self.scrollView.frame.size.width - 60;
+        view.backgroundColor = [UIColor grayColor];
         view.frame = (CGRect){{CGRectGetWidth(self.scrollView.frame) * idx + 30,(CGRectGetHeight(self.scrollView.frame) - size.height)/2 - 7},size};
     }];
     
@@ -114,35 +115,9 @@
 {
     if (![keyPath isEqualToString:WQTITLEVIEW_KEYPATH])return;
     CGFloat offset_x = self.observedScrollView.contentOffset.x;
-    CGFloat off_x =  (offset_x - 320.0) * 150 / 300;
-    if (offset_x != 320.0 && offset_x != 640.0) {
-        self.scrollView.contentOffset = CGPointMake(self.pageNumber * CGRectGetWidth(self.scrollView.frame) + off_x, 0);
-    }
+    CGFloat off_x =  (offset_x - 320.0) * 150 / 320;
+    self.scrollView.contentOffset = CGPointMake(self.pageNumber * CGRectGetWidth(self.scrollView.frame) + off_x, 0);
     self.pageControl.currentPage = self.pageNumber;
-/*
-    CGFloat ratio = CGRectGetWidth(self.observedScrollView.frame) / CGRectGetWidth(self.scrollView.frame);
-    if (ratio > 0) self.scrollView.contentOffset = CGPointMake(self.observedScrollView.contentOffset.x / ratio, 0);
-    CGFloat pageWidth = CGRectGetWidth(self.observedScrollView.frame);
-	NSUInteger page = floor((self.observedScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    self.pageControl.currentPage = page;
-    
-    CGFloat scrollViewWidth = CGRectGetWidth(self.scrollView.frame);
-    
-    [self.views enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
-        CGFloat diff = (self.scrollView.contentOffset.x - scrollViewWidth*idx) + scrollViewWidth/2;
-        if (diff > scrollViewWidth/2) {
-            diff = scrollViewWidth - diff;
-        }
-        if (diff < 0)diff = 0;
-        CGFloat alpha = scrollViewWidth / 100 * diff / 100 + 0.15f;
-        view.alpha = alpha;
-        
-        if (self.observedScrollView.contentOffset.x <=0) {
-            view.alpha = 1;
-        }
-    }];
-*/
-    
 }
 
 #pragma mark - Getters & setters

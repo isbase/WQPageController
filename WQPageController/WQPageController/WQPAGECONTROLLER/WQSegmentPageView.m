@@ -30,9 +30,8 @@
         self.pageNumber = 0;
         
         CGRect rc  = [self viewWithTag:self.pageNumber + kButtonTagStart].frame;
-        lineView = [[UIView alloc]initWithFrame:CGRectMake(rc.origin.x, 5, rc.size.width, self.frame.size.height - 10)];
+        lineView = [[UIView alloc]initWithFrame:CGRectMake(rc.origin.x, self.frame.size.height - 2, rc.size.width, 2)];
         lineView.backgroundColor = [UIColor colorWithRed:190.0/255.1 green:2.0/255.0 blue:1.0/255.0 alpha:1];
-        lineView.layer.cornerRadius = 5;
         [self addSubview:lineView];
         
         __block int offset_x = 10;
